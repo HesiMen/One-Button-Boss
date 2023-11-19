@@ -140,7 +140,7 @@ public class EnemyAI : MonoBehaviour
     private void Attack()
     {
         DOTween.Kill(transform); // Stop any ongoing tween
-        myAtk.Invoke(true, this);
+        //myAtk.Invoke(true, this);
         hasFinishedAttack = true;
         // Additional attack behavior here
     }
