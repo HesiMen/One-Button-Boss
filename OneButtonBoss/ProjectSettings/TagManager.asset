@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Effects_Backing
+    uniqueID: 2195311155
+    locked: 0
+  - name: Weapon_Effects_Back
+    uniqueID: 3078570129
+    locked: 0
+  - name: Weapon
+    uniqueID: 3775844619
+    locked: 0
+  - name: Weapon_Effects_Front
+    uniqueID: 3347593285
+    locked: 0
+  - name: Effects_Overlay
+    uniqueID: 3132853271
+    locked: 0
