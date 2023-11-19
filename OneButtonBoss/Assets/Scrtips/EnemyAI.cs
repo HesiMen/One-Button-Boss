@@ -13,17 +13,22 @@ public class EnemyAI : MonoBehaviour
     public float spawnRadius = 2.0f;
 
     [Header("Creep Settings")]
-    public float creepDuration = 5.0f; // Duration of the creep movement
+    public float creepDuration = 5.0f;
     private Tween creepTween;
 
     [Header("PreAttack Settings")]
     public float preAttachDistance = 2.0f;
-    public float preAttackDuration = 2.0f; // Duration of the pre-attack movement
+    public float preAttackDuration = 2.0f;
     private Sequence preAtkTween = null;
 
     [Header("Attack Settings")]
     public float attackDistance = 1.0f;
 
+
+    public delegate void OnHeroAtk(bool atkNow, EnemyAI self);
+    public OnHeroAtk myAtk;
+
+    private bool hasFinishedAttack = false;
     private void Start()
     {
         SpawnAtRadiusFromPointA();
@@ -38,7 +43,7 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator BehaviorCoroutine()
     {
-        while (true)
+        while (!hasFinishedAttack)
         {
             float distanceToPointA = Vector2.Distance(transform.position, pointA.position);
 
@@ -95,46 +100,48 @@ public class EnemyAI : MonoBehaviour
     }
 
 
-    private void PreAttack()
-    {
-        Debug.Log("Pre attack");
-        Vector3 startPosition = transform.position;
-        Vector3 endPosition = pointA.position;
-        float zigzagWidth = 1.0f; // Width of the zigzag movement
-        int zigzagCount = 3; // Number of zigzags
-
-        preAtkTween = DOTween.Sequence();
-
-        for (int i = 0; i < zigzagCount; i++)
-        {
-            // Calculate intermediate points for zigzag
-            Vector3 direction = (endPosition - startPosition).normalized;
-            Vector3 right = new Vector3(-direction.y, direction.x, direction.z); // Right vector perpendicular to direction
-            Vector3 zigzagPoint = Vector3.Lerp(startPosition, endPosition, (i + 0.5f) / zigzagCount) + right * zigzagWidth * ((i % 2 == 0) ? 1 : -1);
-
-            // Append movement to the zigzag point
-            preAtkTween.Append(transform.DOMove(zigzagPoint, preAttackDuration / (zigzagCount * 2)).SetEase(Ease.Linear));
-        }
-
-        // Finally move to the end position
-        preAtkTween.Append(transform.DOMove(endPosition, preAttackDuration / (zigzagCount * 2)).SetEase(Ease.Linear));
-    }
-
     //private void PreAttack()
     //{
+    //    Debug.Log("Pre attack");
+    //    Vector3 startPosition = transform.position;
+    //    Vector3 endPosition = pointA.position;
+    //    float zigzagWidth = 1.0f; // Width of the zigzag movement
+    //    int zigzagCount = 3; // Number of zigzags
 
     //    preAtkTween = DOTween.Sequence();
 
-    //    preAtkTween.Append(transform.DOMove(pointA.position, preAttackDuration).SetEase(Ease.InOutQuad));
+    //    for (int i = 0; i < zigzagCount; i++)
+    //    {
+    //        // Calculate intermediate points for zigzag
+    //        Vector3 direction = (endPosition - startPosition).normalized;
+    //        Vector3 right = new Vector3(-direction.y, direction.x, direction.z); // Right vector perpendicular to direction
+    //        Vector3 zigzagPoint = Vector3.Lerp(startPosition, endPosition, (i + 0.5f) / zigzagCount) + right * zigzagWidth * ((i % 2 == 0) ? 1 : -1);
 
+    //        // Append movement to the zigzag point
+    //        preAtkTween.Append(transform.DOMove(zigzagPoint, preAttackDuration / (zigzagCount * 2)).SetEase(Ease.Linear));
+    //    }
 
-
-
+    //    // Finally move to the end position
+    //    preAtkTween.Append(transform.DOMove(endPosition, preAttackDuration / (zigzagCount * 2)).SetEase(Ease.Linear));
     //}
+
+    private void PreAttack()
+    {
+
+        preAtkTween = DOTween.Sequence();
+
+        preAtkTween.Append(transform.DOMove(pointA.position, preAttackDuration).SetEase(Ease.InOutQuad));
+
+
+
+
+    }
 
     private void Attack()
     {
         DOTween.Kill(transform); // Stop any ongoing tween
+        myAtk.Invoke(true, this);
+        hasFinishedAttack = true;
         // Additional attack behavior here
     }
 
@@ -209,8 +216,8 @@ public class EnemyAI : MonoBehaviour
     //    }
     //}
 
- 
-    
+
+
 
     //private void Creep()
     //{
