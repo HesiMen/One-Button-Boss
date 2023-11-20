@@ -6,6 +6,10 @@ using System.Collections;
 //Base enemy AI
 public class EnemyAI : MonoBehaviour, IDamageable
 {
+    [SerializeField] GameObject mark;
+    [SerializeField] public Sprite myColor;
+    [SerializeField] public GameObject myWeapon;
+    SpriteRenderer myspriteRenderer;
 
     public enum AIState { Creep, PreAttack, Attack }
     public enum AIRange { Close = 1, Medium = 2, Long = 3 }
@@ -18,9 +22,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
 
 
-
     [Header("General Settings")]
-    [SerializeField] Transform mainCharacter;
+    [SerializeField] public Transform mainCharacter;
     [SerializeField] float spawnRadius = 2.0f;
 
     [Header("Creep Settings")]
@@ -52,8 +55,12 @@ public class EnemyAI : MonoBehaviour, IDamageable
         StartCoroutine(BehaviorCoroutine());
     }
 
+
     private void Initiate()
     {
+        myspriteRenderer = this.GetComponent<SpriteRenderer>();
+        myspriteRenderer.sprite = myColor;
+        mark.SetActive(false);
         currHealth = health;
         attackDistance = (int)myRange;
     }
@@ -102,9 +109,12 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     private void LookAtPointA()
     {
-        Vector2 directionToTarget = mainCharacter.position - transform.position;
-        float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        if (mainCharacter != null)
+        {
+            Vector2 directionToTarget = mainCharacter.position - transform.position;
+            float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        }
     }
 
     private void SpawnAtRadiusFromPointA()
@@ -162,7 +172,9 @@ public class EnemyAI : MonoBehaviour, IDamageable
     {
         DOTween.Kill(transform); // Stop any ongoing tween
         //myAtk.Invoke(true, this);
+        mark.SetActive(true);
         hasFinishedAttack = true;
+        
         // Additional attack behavior here
     }
 
