@@ -154,12 +154,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  pointA: {fileID: 777407781}
-  spawnRadius: 4
+  myRange: 1
+  health: 1
+  mainCharacter: {fileID: 777407781}
+  spawnRadius: 5
   creepDuration: 5
-  preAttachDistance: 2
-  preAttackDuration: 0.5
-  attackDistance: 0.1
+  preAttachDistance: 3
+  preAttackDuration: 0.1
+  zigzag: 0
+  zigzagWidth: 1
+  zigzagCount: 3
 --- !u!212 &118446512
 SpriteRenderer:
   m_ObjectHideFlags: 0
