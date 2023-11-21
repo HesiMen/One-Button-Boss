@@ -399,11 +399,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &895960741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 895960743}
+  - component: {fileID: 895960742}
+  m_Layer: 0
+  m_Name: DuelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &895960742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895960741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 171dd27d2b94dcf40a44a0ad346a249d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allHeros:
+  - {fileID: 0}
+  player: {fileID: 1252674199}
+--- !u!4 &895960743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895960741}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1252674198 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6760772923755991825, guid: 06ec7adb12357df448443718c86aef40, type: 3}
   m_PrefabInstance: {fileID: 725371695842491294}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1252674199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3839893113688630198, guid: 06ec7adb12357df448443718c86aef40, type: 3}
+  m_PrefabInstance: {fileID: 725371695842491294}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252674198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bfed729cc006a84898de0535d20e158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &725371695842491294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -469,3 +527,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 725371695842491294}
   - {fileID: 806583747}
+  - {fileID: 895960743}
