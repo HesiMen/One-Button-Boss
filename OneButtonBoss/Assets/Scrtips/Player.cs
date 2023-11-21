@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
     Animator playerAnimator; //reference for animator
     public delegate void OnPlayerAttack();
     public static OnPlayerAttack playerAttack;
-    bool isPlayerAttacking;
+    public bool isPlayerAttacking;
+    [SerializeField] float slashTiming = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,27 +20,34 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Slash();
+        if (Input.GetAxis("Slash") > 0f)
+        {
+            Slash();
+        }
     }
 
 
     private void Slash()
     {
-        if (Input.GetAxis("Slash") > 0f)
-        {
             if (!isPlayerAttacking)
             {
-                playerAttack.Invoke();
                 isPlayerAttacking = true;
+                playerAttack.Invoke();
             }
                 
             playerAnimator.SetBool("isAttacking", true);
-        }
-        else
-        {
-            isPlayerAttacking = false;
-            //playerAttack.Invoke();
-            playerAnimator.SetBool("isAttacking", false);
-        }
+            StartCoroutine(StopSlash());
+    }
+
+
+    /*
+     * Timer that will automatically stop the player from slashing.
+     * Prevents just holding it down / spamming.
+     */
+    IEnumerator StopSlash()
+    {
+        yield return new WaitForSeconds(slashTiming);
+        isPlayerAttacking = false;
+        playerAnimator.SetBool("isAttacking", false);
     }
 }

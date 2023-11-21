@@ -375,7 +375,6 @@ MonoBehaviour:
   enemyTypes:
   - {fileID: 518870714472298017, guid: 0e9c78f529526bb4faa099a49f5581b9, type: 3}
   - {fileID: 6614961636663947613, guid: 2da7dcc9f3327744fbbab2593db410d4, type: 3}
-  - {fileID: 996041121017385192, guid: 8ba7592b3e89a194b89d11eb75442f13, type: 3}
   weapons: {fileID: 11400000, guid: 85eeeff4077b3f04abe3b3087eee908c, type: 2}
   enemyColor:
   - {fileID: 21300000, guid: dcb0e693cfc46bf46b5a15a91654b39c, type: 3}
@@ -432,6 +431,7 @@ MonoBehaviour:
   allHeros:
   - {fileID: 0}
   player: {fileID: 1252674199}
+  timeWindow: 1
 --- !u!4 &895960743
 Transform:
   m_ObjectHideFlags: 0
@@ -514,6 +514,10 @@ PrefabInstance:
     - target: {fileID: 7877072755308061008, guid: 06ec7adb12357df448443718c86aef40, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 361.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161503728206717303, guid: 06ec7adb12357df448443718c86aef40, type: 3}
+      propertyPath: m_FlipY
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

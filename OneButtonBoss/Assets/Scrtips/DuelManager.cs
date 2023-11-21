@@ -8,6 +8,12 @@ public class DuelManager : MonoBehaviour
     public List<EnemyAI> allHeros;
     [SerializeField] Player player;
     bool playerAttacking;
+    [SerializeField] float timeWindow = 0.5f;
+    bool battleResult = false;
+    Vector2 playerPosition;
+    Vector2 enemyPosition;
+    Quaternion playerRotation;
+    Quaternion enemyRotation;
 
     private void Awake()
     {
@@ -17,10 +23,7 @@ public class DuelManager : MonoBehaviour
 
     private void PlayerAttackFlag()
     {
-        if (!playerAttacking)
-        {
-            playerAttacking = true;
-        }
+        playerAttacking = player.isPlayerAttacking;
             
     }
 
@@ -30,29 +33,44 @@ public class DuelManager : MonoBehaviour
         allHeros.Add(enemy);
     }
 
-    
-   void Update()
-    {
-        if (playerAttacking)
-        {
-            Debug.Log("Player has attacked");
-            playerAttacking = false;
-        }
-    }
-
 
 
     private void OnAtk(bool atkNow, EnemyAI enemy)
     {
         Debug.Log("Enemy has attacked");
 
-        if (playerAttacking)
-        {
-            Debug.Log("Player has attacked");
-        }
+        StartCoroutine(SlashWindow(enemy));
 
+        //enemy.transform.position = playerPosition;
+        
+        
         //if killed 
         //enemy.myAtk -= OnAtk;
-        //enemy.gameObject.SetActive(false);
+    }
+
+
+    /*
+     * Timer that controls the amount of time a player 
+     * can attack before the battle result is called.
+     */
+    IEnumerator SlashWindow(EnemyAI enemy)
+    {
+        yield return new WaitForSeconds(timeWindow);
+        if (playerAttacking)
+        {
+            battleResult = true;
+            Debug.Log("Player Won");
+            enemy.myAtk -= OnAtk;
+            enemy.gameObject.SetActive(false);
+            playerAttacking = false;
+            player.transform.position = playerPosition;
+            player.transform.rotation = playerRotation;
+        }
+        else
+        {
+            battleResult = false;
+            Debug.Log("Enemy Won");
+            player.gameObject.SetActive(false);
+        }
     }
 }
