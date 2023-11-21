@@ -19,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
     float nextTimeToSpawn;
     float counter;
 
+    [SerializeField] public DuelManager duelManager;
     private void Start()
     {
         SpawnEnemy();
@@ -45,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
 
         InitEnemy(newEnemy);
         spawnedEnemies.Add(newEnemy);
-
+        duelManager.SubscribeEnemy(newEnemy);
     }
 
     public void InitEnemy(EnemyAI enemy)

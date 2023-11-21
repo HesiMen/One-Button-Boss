@@ -276,7 +276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &619394801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,6 +384,7 @@ MonoBehaviour:
   spawnRateRange: {x: 3, y: 7}
   spawnedEnemies: []
   hasLost: 0
+  duelManager: {fileID: 895960742}
 --- !u!4 &806583747
 Transform:
   m_ObjectHideFlags: 0

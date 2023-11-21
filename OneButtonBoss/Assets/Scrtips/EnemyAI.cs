@@ -171,7 +171,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     public virtual void Attack()
     {
         DOTween.Kill(transform); // Stop any ongoing tween
-        //myAtk.Invoke(true, this);
+        myAtk.Invoke(true, this);
         mark.SetActive(true);
         hasFinishedAttack = true;
         

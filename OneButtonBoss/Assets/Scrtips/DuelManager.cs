@@ -14,6 +14,7 @@ public class DuelManager : MonoBehaviour
         Player.playerAttack += PlayerAttackFlag;
     }
 
+
     private void PlayerAttackFlag()
     {
         if (!playerAttacking)
@@ -23,17 +24,13 @@ public class DuelManager : MonoBehaviour
             
     }
 
-    private void Start()
+    public void SubscribeEnemy(EnemyAI enemy)
     {
-        foreach (var hero in allHeros)
-        {
-            if (hero != null)
-            {
-                hero.myAtk += OnAtk;
-            }
-        }
+        enemy.myAtk += OnAtk;
+        allHeros.Add(enemy);
     }
 
+    
    void Update()
     {
         if (playerAttacking)
@@ -55,6 +52,7 @@ public class DuelManager : MonoBehaviour
         }
 
         //if killed 
+        //enemy.myAtk -= OnAtk;
         //enemy.gameObject.SetActive(false);
     }
 }
