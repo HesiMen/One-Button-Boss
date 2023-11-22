@@ -55,10 +55,22 @@ public class DuelManager : MonoBehaviour
      * can attack before the battle result is called.
      */
     IEnumerator SlashWindow(EnemyAI enemy)
-    {
-        yield return new WaitForSeconds(timeWindow);
+    {   
+        // Won't continue Coroutine until player attacks or time window ends
+        float currentTime = 0;
+        while(!playerAttacking && currentTime <= timeWindow)
+        {
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+        
         if (playerAttacking)
         {
+            //Swap positions
+            player.transform.position = enemy.transform.position;
+            enemy.transform.position = playerPosition;
+            yield return new WaitForSeconds(1f);
+            
             battleResult = true;
             Debug.Log("Player Won");
             enemy.myAtk -= OnAtk;
