@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5687272790138158034}
   - component: {fileID: 7455147304130218893}
   m_Layer: 5
-  m_Name: Flash
+  m_Name: Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b451f19f29b862341881cc68504afd11, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 820b47570f8f00c4f8323e5d89f954fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &342043493407933346
 GameObject:
@@ -344,7 +344,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953063694936899413}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -421,7 +421,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 0, y: 50}
+  m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2984151400889341594
 CanvasRenderer:
@@ -472,6 +472,7 @@ GameObject:
   - component: {fileID: 7791275716233252470}
   - component: {fileID: 3552508042986303622}
   - component: {fileID: 2250862278478557221}
+  - component: {fileID: 8015002845654098848}
   m_Layer: 5
   m_Name: Ui_FullScreen_Effects
   m_TagString: Untagged
@@ -520,10 +521,55 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 6874204ba92ba4e4498e41a261960928, type: 2}
   - {fileID: 7400000, guid: 0f2585d67beaadd4cb6500001b0086cc, type: 2}
+  - {fileID: 7400000, guid: 93d8d24fc64fe1349b078dfa312ff0ec, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &8015002845654098848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965273670234520075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cbd6a62a34f184a975840c012c605a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 7466457888669341117}
+  effectImage: {fileID: 7455147304130218893}
+  effectCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.006266004
+      outSlope: -0.0051687793
+      tangentMode: 1
+      weightedMode: 2
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 25.962013
+      outSlope: 25.962013
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.028599977
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  effectTime: 0.2
+  removeTime: 0.15
+  animComponent: {fileID: 2250862278478557221}
+  animClipFadeOut: {fileID: 7400000, guid: 93d8d24fc64fe1349b078dfa312ff0ec, type: 2}
+  animClipEngageFight: {fileID: 7400000, guid: 6874204ba92ba4e4498e41a261960928, type: 2}
+  animClipExclamationPoint: {fileID: 7400000, guid: 0f2585d67beaadd4cb6500001b0086cc, type: 2}
 --- !u!1 &5735344000183453316
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +605,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 0, y: 50}
+  m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2046549603389085035
 CanvasRenderer:
