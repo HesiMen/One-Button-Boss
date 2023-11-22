@@ -14,6 +14,7 @@ public class DuelManager : MonoBehaviour
     Vector2 enemyPosition;
     Quaternion playerRotation;
     Quaternion enemyRotation;
+    [SerializeField] private FullScreenEffectManager fullScreenEffectManager;
 
     private void Awake()
     {
@@ -23,12 +24,13 @@ public class DuelManager : MonoBehaviour
 
     private void PlayerAttackFlag()
     {
+        fullScreenEffectManager.PlayAnimateMaterial();
         playerAttacking = player.isPlayerAttacking;
-            
     }
 
     public void SubscribeEnemy(EnemyAI enemy)
     {
+        fullScreenEffectManager.PlayEngageFight();
         enemy.myAtk += OnAtk;
         allHeros.Add(enemy);
     }
@@ -38,7 +40,6 @@ public class DuelManager : MonoBehaviour
     private void OnAtk(bool atkNow, EnemyAI enemy)
     {
         Debug.Log("Enemy has attacked");
-
         StartCoroutine(SlashWindow(enemy));
 
         //enemy.transform.position = playerPosition;

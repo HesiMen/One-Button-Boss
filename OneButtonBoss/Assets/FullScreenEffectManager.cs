@@ -20,19 +20,13 @@ public class FullScreenEffectManager : MonoBehaviour
     [SerializeField] private AnimationClip animClipEngageFight;
     [SerializeField] private AnimationClip animClipExclamationPoint;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            StartCoroutine (AnimateUIMaterial(effectTime));
-    }
-
-    public void PlayAnimation(AnimationClip clip)
+    private void PlayAnimation(AnimationClip clip)
     {
         animComponent.clip = clip;
         animComponent.Play();
     }
 
-    public IEnumerator AnimateUIMaterial(float effectTime)
+    private IEnumerator AnimateUIMaterial(float effectTime)
     {
         float currentTime = 0;
         canvasGroup.alpha = 1;
@@ -50,4 +44,15 @@ public class FullScreenEffectManager : MonoBehaviour
     {
         effectImage.material.SetFloat("_Fill", 0f);
     }
+
+    public void PlayEngageFight()
+    {
+        PlayAnimation(animClipEngageFight);
+    }
+
+    public void PlayAnimateMaterial()
+    {
+        StartCoroutine (AnimateUIMaterial(effectTime));
+    }
+
 }
