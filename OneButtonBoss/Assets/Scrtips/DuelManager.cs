@@ -3,18 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class DuelManager : MonoBehaviour
 {
     public List<EnemyAI> allHeros;
     [SerializeField] Player player;
     bool playerAttacking;
     [SerializeField] float timeWindow = 0.5f;
-    bool battleResult = false;
     Vector2 playerPosition;
     Vector2 enemyPosition;
     Quaternion playerRotation;
     Quaternion enemyRotation;
     [SerializeField] private FullScreenEffectManager fullScreenEffectManager;
+    
+    [Header("Audio Settings")]
+    [SerializeField] AudioClip clashSound;
+    [SerializeField] float clashVolume = 1f;
+    [SerializeField] AudioClip bloodSound;
+    [SerializeField] float bloodVolume = 1f;
 
     private void Awake()
     {
@@ -42,6 +48,7 @@ public class DuelManager : MonoBehaviour
     private void OnAtk(bool atkNow, EnemyAI enemy)
     {
         Debug.Log("Enemy has attacked");
+        AudioSource.PlayClipAtPoint(clashSound, Camera.main.transform.position, clashVolume);
         StartCoroutine(SlashWindow(enemy));
 
         //enemy.transform.position = playerPosition;
@@ -72,8 +79,8 @@ public class DuelManager : MonoBehaviour
             player.transform.position = enemy.transform.position;
             enemy.transform.position = playerPosition;
             yield return new WaitForSeconds(1f);
+            AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
             player.MovePlayerBackToOrigin();
-            battleResult = true;
             Debug.Log("Player Won");
             enemy.myAtk -= OnAtk;
             enemy.gameObject.SetActive(false);
@@ -83,8 +90,8 @@ public class DuelManager : MonoBehaviour
         }
         else
         {
-            battleResult = false;
             Debug.Log("Enemy Won");
+            AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
             player.gameObject.SetActive(false);
         }
     }
