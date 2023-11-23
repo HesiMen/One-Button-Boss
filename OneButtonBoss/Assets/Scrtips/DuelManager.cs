@@ -81,14 +81,14 @@ public class DuelManager : MonoBehaviour
             player.transform.position = enemy.transform.position;
             enemy.transform.position = playerPosition;
             yield return new WaitForSeconds(1f);
+            enemy.Kill();
+            enemy.gameObject.SetActive(false);
             AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
+            yield return new WaitForSeconds(0.5f);
             player.MovePlayerBackToOrigin();
             Debug.Log("Player Won");
             enemy.myAtk -= OnAtk;
-            enemy.gameObject.SetActive(false);
             playerAttacking = false;
-            //player.transform.position = playerPosition;
-            //player.transform.rotation = playerRotation;
         }
         else
         {
