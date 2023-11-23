@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -9,11 +10,15 @@ public class Player : MonoBehaviour
     public delegate void OnPlayerAttack();
     public static OnPlayerAttack playerAttack;
     public bool isPlayerAttacking;
-    [SerializeField] float slashTiming = 1f;
+    [SerializeField] private float slashTiming = 1f;
+    [SerializeField] public Transform rotationTarget;
+    [SerializeField] private float tweenToOriginTime;
+    [SerializeField] private float rotationTime;
 
     // Start is called before the first frame update
     void Start()
     {
+        //TODO: remove this get component call and directly reference it by serializign the animator field
         playerAnimator = GetComponent<Animator>();
     }
 
@@ -21,9 +26,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (Input.GetAxis("Slash") > 0f)
-        {
             Slash();
-        }
+
+        //Face target if it's defined
+        if(rotationTarget)
+            FaceEnemy(rotationTarget);
     }
 
 
@@ -49,5 +56,18 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(slashTiming);
         isPlayerAttacking = false;
         playerAnimator.SetBool("isAttacking", false);
+    }
+
+    private void FaceEnemy(Transform enemyTransform)
+    {
+        Vector2 directionToTarget = enemyTransform.position - this.transform.position;
+        float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+        var rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        transform.DORotateQuaternion(rotation, rotationTime);
+    }
+
+    public void MovePlayerBackToOrigin()
+    {
+        transform.DOMove(new Vector3(0,0,0), tweenToOriginTime);
     }
 }

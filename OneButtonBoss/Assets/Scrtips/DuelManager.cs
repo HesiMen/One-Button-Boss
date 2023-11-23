@@ -26,12 +26,14 @@ public class DuelManager : MonoBehaviour
     {
         fullScreenEffectManager.PlayAnimateMaterial();
         playerAttacking = player.isPlayerAttacking;
+        player.rotationTarget = null;
     }
 
     public void SubscribeEnemy(EnemyAI enemy)
     {
         fullScreenEffectManager.PlayEngageFight();
         enemy.myAtk += OnAtk;
+        player.rotationTarget = enemy.transform;
         allHeros.Add(enemy);
     }
 
@@ -70,14 +72,14 @@ public class DuelManager : MonoBehaviour
             player.transform.position = enemy.transform.position;
             enemy.transform.position = playerPosition;
             yield return new WaitForSeconds(1f);
-            
+            player.MovePlayerBackToOrigin();
             battleResult = true;
             Debug.Log("Player Won");
             enemy.myAtk -= OnAtk;
             enemy.gameObject.SetActive(false);
             playerAttacking = false;
-            player.transform.position = playerPosition;
-            player.transform.rotation = playerRotation;
+            //player.transform.position = playerPosition;
+            //player.transform.rotation = playerRotation;
         }
         else
         {

@@ -208,6 +208,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerAttacking: 0
   slashTiming: 0.5
+  rotationTarget: {fileID: 0}
+  tweenToOriginTime: 0.25
+  rotationTime: 0.1
 --- !u!1 &8605857675880227870
 GameObject:
   m_ObjectHideFlags: 0
