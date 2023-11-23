@@ -15,6 +15,7 @@ public class DuelManager : MonoBehaviour
     Quaternion playerRotation;
     Quaternion enemyRotation;
     [SerializeField] private FullScreenEffectManager fullScreenEffectManager;
+    [SerializeField] private CameraEffectManager cameraEffectManager;
     
     [Header("Audio Settings")]
     [SerializeField] AudioClip clashSound;
@@ -31,6 +32,7 @@ public class DuelManager : MonoBehaviour
     private void PlayerAttackFlag()
     {
         fullScreenEffectManager.PlayAnimateMaterial();
+        cameraEffectManager.ShakeCamera();
         playerAttacking = player.isPlayerAttacking;
         player.rotationTarget = null;
     }

@@ -16,14 +16,6 @@ public class CameraEffectManager : MonoBehaviour
     {
         noiseComponent = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            ShakeCamera();
-        }
-    }
-
     public void ShakeCamera()
     {
         StartCoroutine(ShakeCamera(shakeDuration, amplitude, frequency));

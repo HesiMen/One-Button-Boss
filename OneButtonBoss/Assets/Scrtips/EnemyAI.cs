@@ -66,7 +66,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
     }
     private void Update()
     {
-        LookAtPointA();
+        if (currentState == AIState.Creep)
+            LookAtPointA();
     }
 
     IEnumerator BehaviorCoroutine()
