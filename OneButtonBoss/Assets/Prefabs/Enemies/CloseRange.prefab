@@ -358,6 +358,7 @@ MonoBehaviour:
   currentState: 0
   myRange: 1
   health: 1
+  bloodEffect: {fileID: 8481138838859083671, guid: a5f7e6a0575bf714b8e705e5ac62901c, type: 3}
   mainCharacter: {fileID: 0}
   spawnRadius: 5
   creepDuration: 5

@@ -18,7 +18,10 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     [SerializeField] int health = 1;
     private int currHealth;
+    private Quaternion lookAtRot;
 
+    [Header("Effects")]
+    [SerializeField] private GameObject bloodEffect;
 
 
 
@@ -66,7 +69,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
     }
     private void Update()
     {
-        LookAtPointA();
+        if (currentState == AIState.Creep)
+            LookAtPointA();
     }
 
     IEnumerator BehaviorCoroutine()
@@ -113,7 +117,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
         {
             Vector2 directionToTarget = mainCharacter.position - transform.position;
             float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+            lookAtRot = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+            transform.rotation = lookAtRot;
         }
     }
 
@@ -189,7 +194,9 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     public virtual void Kill()
     {
-
+        //Spawn particle effect on kill
+        float randomZ = Random.Range(0f, 360f);
+        
+        Instantiate(bloodEffect, transform.position, Quaternion.identity);
     }
-
 }

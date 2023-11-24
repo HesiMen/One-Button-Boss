@@ -15,12 +15,15 @@ public class DuelManager : MonoBehaviour
     Quaternion playerRotation;
     Quaternion enemyRotation;
     [SerializeField] private FullScreenEffectManager fullScreenEffectManager;
+    [SerializeField] private CameraEffectManager cameraEffectManager;
     
     [Header("Audio Settings")]
     [SerializeField] AudioClip clashSound;
     [SerializeField] float clashVolume = 1f;
     [SerializeField] AudioClip bloodSound;
     [SerializeField] float bloodVolume = 1f;
+
+    [SerializeField] GameObject bloodSplatter;
 
     private void Awake()
     {
@@ -31,6 +34,8 @@ public class DuelManager : MonoBehaviour
     private void PlayerAttackFlag()
     {
         fullScreenEffectManager.PlayAnimateMaterial();
+        cameraEffectManager.Zoom();
+        cameraEffectManager.ShakeCamera();
         playerAttacking = player.isPlayerAttacking;
         player.rotationTarget = null;
     }
@@ -79,19 +84,21 @@ public class DuelManager : MonoBehaviour
             player.transform.position = enemy.transform.position;
             enemy.transform.position = playerPosition;
             yield return new WaitForSeconds(1f);
+            enemy.Kill();
+            Instantiate(bloodSplatter, enemy.transform.position, enemy.transform.rotation);
+            enemy.gameObject.SetActive(false);
             AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
+            yield return new WaitForSeconds(0.5f);
             player.MovePlayerBackToOrigin();
             Debug.Log("Player Won");
             enemy.myAtk -= OnAtk;
-            enemy.gameObject.SetActive(false);
             playerAttacking = false;
-            //player.transform.position = playerPosition;
-            //player.transform.rotation = playerRotation;
         }
         else
         {
             Debug.Log("Enemy Won");
             AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
+            Instantiate(bloodSplatter, player.transform.position, player.transform.rotation);
             player.gameObject.SetActive(false);
         }
     }
