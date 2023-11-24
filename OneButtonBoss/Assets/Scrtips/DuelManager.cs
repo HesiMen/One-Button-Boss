@@ -23,6 +23,8 @@ public class DuelManager : MonoBehaviour
     [SerializeField] AudioClip bloodSound;
     [SerializeField] float bloodVolume = 1f;
 
+    [SerializeField] GameObject bloodSplatter;
+
     private void Awake()
     {
         Player.playerAttack += PlayerAttackFlag;
@@ -83,6 +85,7 @@ public class DuelManager : MonoBehaviour
             enemy.transform.position = playerPosition;
             yield return new WaitForSeconds(1f);
             enemy.Kill();
+            Instantiate(bloodSplatter, enemy.transform.position, enemy.transform.rotation);
             enemy.gameObject.SetActive(false);
             AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
             yield return new WaitForSeconds(0.5f);
@@ -95,6 +98,7 @@ public class DuelManager : MonoBehaviour
         {
             Debug.Log("Enemy Won");
             AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
+            Instantiate(bloodSplatter, player.transform.position, player.transform.rotation);
             player.gameObject.SetActive(false);
         }
     }

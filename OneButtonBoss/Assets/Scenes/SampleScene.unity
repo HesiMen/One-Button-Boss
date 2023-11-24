@@ -841,6 +841,7 @@ MonoBehaviour:
   clashVolume: 0.5
   bloodSound: {fileID: 8300000, guid: ca9331defec905c46996c572b65baf09, type: 3}
   bloodVolume: 1
+  bloodSplatter: {fileID: 5762550930974099551, guid: d9fe3f4b8b1991340b45fa3743354909, type: 3}
 --- !u!4 &895960743
 Transform:
   m_ObjectHideFlags: 0
