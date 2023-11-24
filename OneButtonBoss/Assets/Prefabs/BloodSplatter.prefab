@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2438471832529582196}
   - component: {fileID: 5063775001466142767}
+  - component: {fileID: 8571801033603402847}
+  - component: {fileID: 3055248654246585920}
   m_Layer: 0
   m_Name: BloodSplatter
   m_TagString: Untagged
@@ -52,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: -1462573177, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.3882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -84,3 +86,46 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!111 &8571801033603402847
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5762550930974099551}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: bca3669b8ebaa0140b8c801ae07c0755, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: bca3669b8ebaa0140b8c801ae07c0755, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &3055248654246585920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5762550930974099551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b8bc6a940b2cb4c99502d3b4121edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5063775001466142767}
+  spriteCollection:
+  - {fileID: -1416683960, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
+  - {fileID: -2125071224, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
+  - {fileID: 841395873, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
+  - {fileID: 1214892863, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
+  - {fileID: -1588346099, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
+  - {fileID: 1296250441, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
+  - {fileID: -1611082076, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
+  - {fileID: 425671516, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
+  - {fileID: -1462573177, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
+  - {fileID: -1417565325, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
+  - {fileID: -1772803555, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
+  - {fileID: 1246739969, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
+  - {fileID: 1815514799, guid: 0220134adecf9ed439660fceb9a61236, type: 3}
