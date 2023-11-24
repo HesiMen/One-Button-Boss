@@ -18,12 +18,13 @@ public class FullScreenEffectManager : MonoBehaviour
     [SerializeField] private Animation animComponent;
     [SerializeField] private AnimationClip animClipFadeOut;
     [SerializeField] private AnimationClip animClipEngageFight;
+    [SerializeField] private AnimationClip animClipDisengageFight;
     [SerializeField] private AnimationClip animClipExclamationPoint;
 
     private void PlayAnimation(AnimationClip clip)
     {
         animComponent.clip = clip;
-        animComponent.Play();
+        animComponent.PlayQueued(clip.name, QueueMode.CompleteOthers, PlayMode.StopAll);
     }
 
     private IEnumerator AnimateUIMaterial(float effectTime)
@@ -48,6 +49,11 @@ public class FullScreenEffectManager : MonoBehaviour
     public void PlayEngageFight()
     {
         PlayAnimation(animClipEngageFight);
+    }
+
+    public void PlayDisengageFight()
+    {
+        PlayAnimation(animClipDisengageFight);
     }
 
     public void PlayAnimateMaterial()

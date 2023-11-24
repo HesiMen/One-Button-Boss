@@ -522,6 +522,7 @@ Animation:
   - {fileID: 7400000, guid: 6874204ba92ba4e4498e41a261960928, type: 2}
   - {fileID: 7400000, guid: 0f2585d67beaadd4cb6500001b0086cc, type: 2}
   - {fileID: 7400000, guid: 93d8d24fc64fe1349b078dfa312ff0ec, type: 2}
+  - {fileID: 7400000, guid: 1d22707fcc99b164f95cc79898e3f4f6, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -569,6 +570,7 @@ MonoBehaviour:
   animComponent: {fileID: 2250862278478557221}
   animClipFadeOut: {fileID: 7400000, guid: 93d8d24fc64fe1349b078dfa312ff0ec, type: 2}
   animClipEngageFight: {fileID: 7400000, guid: 6874204ba92ba4e4498e41a261960928, type: 2}
+  animClipDisengageFight: {fileID: 7400000, guid: 1d22707fcc99b164f95cc79898e3f4f6, type: 2}
   animClipExclamationPoint: {fileID: 7400000, guid: 0f2585d67beaadd4cb6500001b0086cc, type: 2}
 --- !u!1 &5735344000183453316
 GameObject:

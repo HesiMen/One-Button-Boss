@@ -80,15 +80,20 @@ public class DuelManager : MonoBehaviour
         
         if (playerAttacking)
         {
-            //Swap positions
+            //Swap positions on Attack
             player.transform.position = enemy.transform.position;
             enemy.transform.position = playerPosition;
             yield return new WaitForSeconds(1f);
+
+            //Kill enemy and spawn effects and play Audio
             enemy.Kill();
             Instantiate(bloodSplatter, enemy.transform.position, enemy.transform.rotation);
             enemy.gameObject.SetActive(false);
             AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
             yield return new WaitForSeconds(0.5f);
+
+            //Disengage fight, count player win, and continue
+            fullScreenEffectManager.PlayDisengageFight();
             player.MovePlayerBackToOrigin();
             Debug.Log("Player Won");
             enemy.myAtk -= OnAtk;
