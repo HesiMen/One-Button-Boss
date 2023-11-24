@@ -32,6 +32,7 @@ public class DuelManager : MonoBehaviour
     private void PlayerAttackFlag()
     {
         fullScreenEffectManager.PlayAnimateMaterial();
+        cameraEffectManager.Zoom();
         cameraEffectManager.ShakeCamera();
         playerAttacking = player.isPlayerAttacking;
         player.rotationTarget = null;

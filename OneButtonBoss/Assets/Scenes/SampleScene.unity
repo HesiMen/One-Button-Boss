@@ -1002,6 +1002,7 @@ MonoBehaviour:
   shakeDuration: 0.1
   amplitude: 6
   frequency: 0.1
+  zoomTime: 0.4
 --- !u!114 &1313762654
 MonoBehaviour:
   m_ObjectHideFlags: 0

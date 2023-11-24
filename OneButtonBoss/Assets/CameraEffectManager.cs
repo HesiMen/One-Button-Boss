@@ -9,7 +9,7 @@ public class CameraEffectManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera vCam;
     private CinemachineBasicMultiChannelPerlin noiseComponent;
     [SerializeField] private float shakeDuration;
-    [SerializeField] private float amplitude, frequency;
+    [SerializeField] private float amplitude, frequency, zoomTime;
 
     // Update is called once per frame
     void Awake()
@@ -28,5 +28,13 @@ public class CameraEffectManager : MonoBehaviour
         yield return new WaitForSeconds(shakeDuration);
         noiseComponent.m_AmplitudeGain = 0;
         noiseComponent.m_FrequencyGain = 0;
+    }
+
+    public void Zoom()
+    {
+        DOVirtual.Float(4f, 5.5f, zoomTime, v => 
+        {
+            vCam.m_Lens.OrthographicSize = v;
+        }).SetEase(Ease.InOutBounce);
     }
 }
