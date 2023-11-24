@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioSource))]
 public class DuelManager : MonoBehaviour
@@ -24,6 +25,8 @@ public class DuelManager : MonoBehaviour
     [SerializeField] float bloodVolume = 1f;
 
     [SerializeField] GameObject bloodSplatter;
+
+    [SerializeField] AudioSource sfx;
 
     private void Awake()
     {
@@ -49,11 +52,18 @@ public class DuelManager : MonoBehaviour
     }
 
 
+    void PlayRandomClash()
+    {
+        float randomPitch = Random.Range(1f, 3f);
+        sfx.pitch = randomPitch;
+        sfx.PlayOneShot(clashSound, clashVolume);
+    }
+
 
     private void OnAtk(bool atkNow, EnemyAI enemy)
     {
         Debug.Log("Enemy has attacked");
-        AudioSource.PlayClipAtPoint(clashSound, Camera.main.transform.position, clashVolume);
+        PlayRandomClash();
         StartCoroutine(SlashWindow(enemy));
 
         //enemy.transform.position = playerPosition;

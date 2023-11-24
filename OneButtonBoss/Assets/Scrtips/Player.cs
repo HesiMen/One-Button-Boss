@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class Player : MonoBehaviour
     [SerializeField] public Transform rotationTarget;
     [SerializeField] private float tweenToOriginTime;
     [SerializeField] private float rotationTime;
+
+    [SerializeField] AudioClip swordSlash;
+    [SerializeField] float slashVolume = 1f;
+    [SerializeField] AudioSource slashSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +39,13 @@ public class Player : MonoBehaviour
     }
 
 
+    void PlayRandomSlash()
+    {
+        float randomPitch = Random.Range(1f, 2f);
+        slashSFX.pitch = randomPitch;
+        slashSFX.PlayOneShot(swordSlash, slashVolume);
+    }
+
     private void Slash()
     {
             if (!isPlayerAttacking)
@@ -41,7 +53,7 @@ public class Player : MonoBehaviour
                 isPlayerAttacking = true;
                 playerAttack.Invoke();
             }
-                
+            PlayRandomSlash();
             playerAnimator.SetBool("isAttacking", true);
             StartCoroutine(StopSlash());
     }
