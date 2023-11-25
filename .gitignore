@@ -71,3 +71,5 @@ OneButtonBoss/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 OneButtonBoss/[Aa]ssets/[Ss]treamingAssets/aa.meta
 OneButtonBoss/[Aa]ssets/[Ss]treamingAssets/aa/*
 OneButtonBoss/.vscode
+OneButtonBoss/Assets/Local
+OneButtonBoss/Assets/Local.meta
