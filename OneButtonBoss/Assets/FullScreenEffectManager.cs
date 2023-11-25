@@ -13,6 +13,7 @@ public class FullScreenEffectManager : MonoBehaviour
     [SerializeField] private AnimationCurve effectCurve;
     [SerializeField] private float effectTime;
     [SerializeField] private float removeTime;
+    [SerializeField] private CanvasGroup exclamationCanvasGroup;
 
     [Header("Legacy Animation")]
     [SerializeField] private Animation animComponent;
@@ -20,6 +21,7 @@ public class FullScreenEffectManager : MonoBehaviour
     [SerializeField] private AnimationClip animClipEngageFight;
     [SerializeField] private AnimationClip animClipDisengageFight;
     [SerializeField] private AnimationClip animClipExclamationPoint;
+    [SerializeField] private AnimationClip animClipRemoveExclamationPoint;
 
     private void PlayAnimation(AnimationClip clip)
     {
@@ -54,6 +56,16 @@ public class FullScreenEffectManager : MonoBehaviour
     public void PlayDisengageFight()
     {
         PlayAnimation(animClipDisengageFight);
+    }
+
+    public void PlayExclamationPoint()
+    {
+        PlayAnimation(animClipExclamationPoint);
+    }
+
+    public void PlayRemoveExclamationPoint()
+    {
+        PlayAnimation(animClipRemoveExclamationPoint);
     }
 
     public void PlayAnimateMaterial()

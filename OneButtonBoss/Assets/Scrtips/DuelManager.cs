@@ -54,7 +54,7 @@ public class DuelManager : MonoBehaviour
 
     void PlayRandomClash()
     {
-        float randomPitch = Random.Range(1f, 3f);
+        float randomPitch = Random.Range(0.85f, 1.15f);
         sfx.pitch = randomPitch;
         sfx.PlayOneShot(clashSound, clashVolume);
     }
@@ -64,6 +64,7 @@ public class DuelManager : MonoBehaviour
     {
         Debug.Log("Enemy has attacked");
         PlayRandomClash();
+        fullScreenEffectManager.PlayExclamationPoint();
         StartCoroutine(SlashWindow(enemy));
 
         //enemy.transform.position = playerPosition;
@@ -90,6 +91,9 @@ public class DuelManager : MonoBehaviour
         
         if (playerAttacking)
         {
+            //Remove exclamationPoint
+            fullScreenEffectManager.PlayRemoveExclamationPoint();
+            
             //Swap positions on Attack
             player.transform.position = enemy.transform.position;
             enemy.transform.position = playerPosition;
@@ -112,6 +116,7 @@ public class DuelManager : MonoBehaviour
         else
         {
             Debug.Log("Enemy Won");
+            fullScreenEffectManager.PlayRemoveExclamationPoint();
             AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
             Instantiate(bloodSplatter, player.transform.position, player.transform.rotation);
             player.gameObject.SetActive(false);

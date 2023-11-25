@@ -63,7 +63,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     {
         myspriteRenderer = this.GetComponent<SpriteRenderer>();
         myspriteRenderer.sprite = myColor;
-        mark.SetActive(false);
+        //mark.SetActive(false);
         currHealth = health;
         attackDistance = (int)myRange;
     }
@@ -177,7 +177,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     {
         DOTween.Kill(transform); // Stop any ongoing tween
         myAtk.Invoke(true, this);
-        mark.SetActive(true);
+        //mark.SetActive(true);
         hasFinishedAttack = true;
         
         // Additional attack behavior here
