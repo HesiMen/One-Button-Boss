@@ -18,7 +18,22 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     [SerializeField] int health = 1;
     private int currHealth;
+    public bool Alive
+    {
+        get
+        {
+            if (currHealth <= 0)
+            {
+                return false;
+            }
+            else
+                return true;
+        }
+    }
+
+
     private Quaternion lookAtRot;
+
 
     [Header("Effects")]
     [SerializeField] private GameObject bloodEffect;
@@ -179,7 +194,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         myAtk.Invoke(true, this);
         //mark.SetActive(true);
         hasFinishedAttack = true;
-        
+
         // Additional attack behavior here
     }
 
@@ -196,7 +211,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     {
         //Spawn particle effect on kill
         float randomZ = Random.Range(0f, 360f);
-        
+
         Instantiate(bloodEffect, transform.position, Quaternion.identity);
     }
 }
