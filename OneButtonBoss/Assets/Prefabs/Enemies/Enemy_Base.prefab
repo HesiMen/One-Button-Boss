@@ -198,6 +198,11 @@ MonoBehaviour:
   creepDuration: 5
   preAttachDistance: 3
   preAttackDuration: 0.1
+  animComponent: {fileID: 3985754266977857255}
+  animClipSwordIdle: {fileID: 7400000, guid: 907778ced1c6e9649b99293133082854, type: 2}
+  animClipSwordCreep: {fileID: 7400000, guid: e244fed777b508d4bb2f933d9aeaf22a, type: 2}
+  animClipSwordPreAttack: {fileID: 7400000, guid: da499b802d272f64593beb1fc3372d15, type: 2}
+  animClipSwordAttack: {fileID: 7400000, guid: 3159ae0b5865b8444828ba8495f5504c, type: 2}
   zigzag: 0
   zigzagWidth: 1
   zigzagCount: 3

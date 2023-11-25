@@ -152,6 +152,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     private void Creep()
     {
         Debug.Log("Creeping");
+        PlayAnimation(animClipSwordCreep, true);
         creepTween = transform.DOMove(mainCharacter.position, creepDuration).SetEase(Ease.Linear);
     }
 
@@ -160,7 +161,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     public virtual void PreAttack()
     {
-
+        PlayAnimation(animClipSwordPreAttack);
         if (zigzag)
         {
             Vector3 startPosition = transform.position;
@@ -189,8 +190,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
         }
 
 
-
-
     }
 
     public virtual void Attack()
@@ -199,6 +198,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         myAtk.Invoke(true, this);
         //mark.SetActive(true);
         hasFinishedAttack = true;
+        PlayAnimation(animClipSwordAttack);
 
         // Additional attack behavior here
     }
@@ -218,5 +218,18 @@ public class EnemyAI : MonoBehaviour, IDamageable
         float randomZ = Random.Range(0f, 360f);
 
         Instantiate(bloodEffect, transform.position, Quaternion.identity);
+    }
+
+    private void PlayAnimation(AnimationClip clip, bool crossFade = false,float fade = .25f)
+    {
+        animComponent.clip = clip;
+
+        if(!crossFade)
+        {
+            animComponent.Play();
+            return;
+        }
+        
+        animComponent.CrossFadeQueued(clip.name, fade, QueueMode.PlayNow);
     }
 }
