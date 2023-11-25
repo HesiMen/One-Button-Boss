@@ -724,8 +724,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1252674198}
   enemyTypes:
-  - {fileID: 518870714472298017, guid: 0e9c78f529526bb4faa099a49f5581b9, type: 3}
-  - {fileID: 6614961636663947613, guid: 2da7dcc9f3327744fbbab2593db410d4, type: 3}
+  - {fileID: 1143817031576398579, guid: 8cfe6dd59d34eb44a96d7dd57f9aae25, type: 3}
+  - {fileID: 6791254074943280222, guid: 2961ca3cb5bda8e4ba1fa63ee7d346f8, type: 3}
   weapons: {fileID: 11400000, guid: 85eeeff4077b3f04abe3b3087eee908c, type: 2}
   enemyColor:
   - {fileID: 21300000, guid: dcb0e693cfc46bf46b5a15a91654b39c, type: 3}
