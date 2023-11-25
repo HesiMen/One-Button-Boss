@@ -58,7 +58,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     [Header("Animations")]
     [SerializeField] private Animation animComponent;
-    [SerializeField] private AnimationClip animClipSwordIdle, animClipSwordCreep, animClipSwordPreAttack,
+    [SerializeField]
+    private AnimationClip animClipSwordIdle, animClipSwordCreep, animClipSwordPreAttack,
         animClipSwordAttack;
 
 
@@ -222,14 +223,16 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     private void PlayAnimation(AnimationClip clip, bool crossFade = false, QueueMode queueMode = QueueMode.PlayNow, float fade = .25f)
     {
+        if (animComponent == null)
+            return;
         animComponent.clip = clip;
 
-        if(!crossFade)
+        if (!crossFade)
         {
             animComponent.Play();
             return;
         }
-        
+
         animComponent.CrossFadeQueued(clip.name, fade, queueMode);
     }
 }

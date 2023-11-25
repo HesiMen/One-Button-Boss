@@ -10,7 +10,7 @@ public class DuelManager : MonoBehaviour
 {
     public List<EnemyAI> allHeros;
     private EnemyAI currentHero;
-    [SerializeField] Player player;
+    [SerializeField] public Player player;
     bool playerAttacking;
     [SerializeField] float timeWindow = 0.5f;
     Vector2 playerPosition;
@@ -30,7 +30,7 @@ public class DuelManager : MonoBehaviour
 
     [SerializeField] AudioSource sfx;
 
-    public bool playerDead = false;
+    
 
 
     /// Battle Tracker
@@ -58,7 +58,7 @@ public class DuelManager : MonoBehaviour
 
     private IEnumerator MyBattle(EnemyAI enemy)
     {
-        while (!playerDead || enemy.Alive)
+        while (player.isAlive && enemy.Alive)// || 
         {
 
 
@@ -84,7 +84,11 @@ public class DuelManager : MonoBehaviour
     {
         foreach (var coroutine in activeCoroutines)
         {
-            StopCoroutine(coroutine);
+            if (coroutine != null)
+            {
+                Debug.Log(coroutine);
+                StopCoroutine(coroutine);
+            }
         }
         activeCoroutines.Clear();
     }
@@ -101,9 +105,11 @@ public class DuelManager : MonoBehaviour
     private void PlayerAttackFlag()
     {
         playerAttackTime = Time.time;
-
-        if (currentHero.currentState != EnemyAI.AIState.Attack)
+        if (currentHero == null || !currentHero.Alive)
             return;
+        if (currentHero != null && currentHero.currentState != EnemyAI.AIState.Attack)
+            return;
+        
         fullScreenEffectManager.PlayAnimateMaterial();
         cameraEffectManager.Zoom();
         cameraEffectManager.ShakeCamera();
@@ -113,6 +119,7 @@ public class DuelManager : MonoBehaviour
 
     public void SubscribeEnemy(EnemyAI enemy)
     {
+        
         BattleStarts(() => MyBattle(enemy));
         playerAttackTime = -1f; 
         enemyAttackTime = -1f; 
@@ -152,7 +159,7 @@ public class DuelManager : MonoBehaviour
     {
         if (playerAttackTime < 0 || enemyAttackTime < 0)
         {
-            Debug.LogError("Attack times not set properly");
+            Debug.LogWarning("Attack times not set properly");
             return;
         }
 
@@ -193,7 +200,7 @@ public class DuelManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             //Kill enemy and spawn effects and play Audio
-            enemy.Kill();
+            enemy.Damage(5);
             Instantiate(bloodSplatter, enemy.transform.position, enemy.transform.rotation);
             enemy.gameObject.SetActive(false);
             AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
@@ -206,15 +213,18 @@ public class DuelManager : MonoBehaviour
             wonEvent.Invoke();
             enemy.myAtk -= OnAtk;
             playerAttacking = false;
+            player.isAlive = true;
         }
         else
         {
             Debug.Log("Enemy Won");
+            //StopAllCoroutines();
             loseEvent.Invoke();
             fullScreenEffectManager.PlayRemoveExclamationPoint();
             AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
             Instantiate(bloodSplatter, player.transform.position, player.transform.rotation);
             player.gameObject.SetActive(false);
+            player.isAlive = false;
         }
 
         CheckTimeBeforeEnemyAtk();

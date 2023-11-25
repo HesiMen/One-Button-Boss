@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     // close, medium, long
     [SerializeField] public GameObject player;
+    [SerializeField] public float delayEnemySpawn;
     [SerializeField] List<EnemyAI> enemyTypes;
     [SerializeField] WeaponSO weapons;
     [SerializeField] List<Sprite> enemyColor;
@@ -20,22 +21,43 @@ public class EnemySpawner : MonoBehaviour
     float counter;
 
     [SerializeField] public DuelManager duelManager;
+    public bool onStart = true;
+
+
     private void Start()
     {
-        SpawnEnemy();
+        if (onStart)
+            StartSpawningHeros();
     }
-    private void Update()
+    public void StartSpawningHeros()
     {
-        if (!hasLost)
+        if (spawnedEnemies != null)
+        {
+            foreach (var enemy in spawnedEnemies)
+            {
+                enemy.gameObject.SetActive(false);
+                Destroy(enemy);
+            }
+            spawnedEnemies.Clear();
+        }
+        StartCoroutine(StartSpawning());
+    }
+    IEnumerator StartSpawning()
+    {
+ 
+        yield return new WaitForSeconds(delayEnemySpawn);
+        while (duelManager.player.isAlive)
         {
             counter -= Time.deltaTime;
+           // Debug.Log(counter);
             if (counter <= 0)
             {
                 SpawnEnemy();
             }
-
+            yield return null;
         }
     }
+
 
     public void SpawnEnemy()
     {
@@ -43,7 +65,7 @@ public class EnemySpawner : MonoBehaviour
         counter = nextTimeToSpawn;
 
         EnemyAI newEnemy = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], this.transform);
-
+      
         InitEnemy(newEnemy);
         spawnedEnemies.Add(newEnemy);
         duelManager.SubscribeEnemy(newEnemy);
@@ -51,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void InitEnemy(EnemyAI enemy)
     {
-
+        enemy.gameObject.SetActive(true);
         enemy.mainCharacter = player.transform;
         enemy.myColor = enemyColor[Random.Range(0, enemyColor.Count - 1)];
         GameObject newWeapon;
