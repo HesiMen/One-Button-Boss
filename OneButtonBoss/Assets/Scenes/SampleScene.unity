@@ -192,6 +192,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ui_FullScreen_Effects
       objectReference: {fileID: 0}
+    - target: {fileID: 7455147304130218893, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fa68924fdbb344b8cab29b9a8e613237, type: 3}
     - target: {fileID: 7791275716233252470, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -270,6 +274,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7791275716233252470, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015002845654098848, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: effectCurve.m_Curve.Array.data[1].value
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015002845654098848, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: effectCurve.m_Curve.Array.data[0].inSlope
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015002845654098848, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: effectCurve.m_Curve.Array.data[1].inSlope
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015002845654098848, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: effectCurve.m_Curve.Array.data[0].outSlope
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015002845654098848, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: effectCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015002845654098848, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: effectCurve.m_Curve.Array.data[1].outSlope
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015002845654098848, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: effectCurve.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015002845654098848, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: effectCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015002845654098848, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: effectCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015002845654098848, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: effectCurve.m_Curve.Array.data[0].weightedMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015002845654098848, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: effectCurve.m_Curve.Array.data[1].weightedMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -783,7 +831,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dcb0e693cfc46bf46b5a15a91654b39c, type: 3}
   - {fileID: 21300000, guid: 42f1d80ec7ebf824dbd5a60c3aaf1607, type: 3}
   - {fileID: 21300000, guid: c878e81c30012ff4fb8d17012e0e3d3a, type: 3}
-  spawnRateRange: {x: 3, y: 7}
+  spawnRateRange: {x: 1, y: 4}
   spawnedEnemies: []
   hasLost: 0
   duelManager: {fileID: 895960742}
