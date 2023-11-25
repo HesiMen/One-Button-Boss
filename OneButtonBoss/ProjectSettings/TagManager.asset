@@ -53,6 +53,12 @@ TagManager:
   - name: Weapon_Effects_Front
     uniqueID: 3347593285
     locked: 0
+  - name: Enemy
+    uniqueID: 3327968277
+    locked: 0
+  - name: Player
+    uniqueID: 3874593237
+    locked: 0
   - name: Effects_Overlay
     uniqueID: 3132853271
     locked: 0

@@ -56,6 +56,11 @@ public class EnemyAI : MonoBehaviour, IDamageable
     //[Header("Attack Settings")]
     private int attackDistance;
 
+    [Header("Animations")]
+    [SerializeField] private Animation animComponent;
+    [SerializeField] private AnimationClip animClipSwordIdle, animClipSwordCreep, animClipSwordPreAttack,
+        animClipSwordAttack;
+
 
     public delegate void OnHeroAtk(bool atkNow, EnemyAI self);
     public OnHeroAtk myAtk;
