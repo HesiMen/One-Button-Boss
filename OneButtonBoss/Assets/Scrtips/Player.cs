@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Slash") > 0f)
+        if (Input.GetKeyDown(KeyCode.Space))
             Slash();
 
         //Face target if it's defined
