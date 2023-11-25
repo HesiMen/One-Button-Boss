@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7165487457253676753}
   - component: {fileID: 5593768976585723717}
+  - component: {fileID: 8026277280218148292}
   m_Layer: 0
   m_Name: WeaponContainer
   m_TagString: Untagged
@@ -52,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,6 +85,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8026277280218148292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207860372614072065}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487c8d855fa4e784cb89dd992282f24b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alpha: 0
+  run: 0
 --- !u!1 &3351602261932109649
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,14 +230,16 @@ Animation:
   m_GameObject: {fileID: 3351602261932109649}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
+  m_Animation: {fileID: 7400000, guid: fd7195a433b2d3e4098727fe38fa1ed8, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 907778ced1c6e9649b99293133082854, type: 2}
   - {fileID: 7400000, guid: e244fed777b508d4bb2f933d9aeaf22a, type: 2}
   - {fileID: 7400000, guid: da499b802d272f64593beb1fc3372d15, type: 2}
   - {fileID: 7400000, guid: 3159ae0b5865b8444828ba8495f5504c, type: 2}
+  - {fileID: 7400000, guid: fd7195a433b2d3e4098727fe38fa1ed8, type: 2}
+  - {fileID: 7400000, guid: fd7195a433b2d3e4098727fe38fa1ed8, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 0
+  m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!1 &6591468837239545690

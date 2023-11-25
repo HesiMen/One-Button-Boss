@@ -152,7 +152,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     private void Creep()
     {
         Debug.Log("Creeping");
-        PlayAnimation(animClipSwordCreep, true);
+        PlayAnimation(animClipSwordCreep, true, QueueMode.CompleteOthers);
         creepTween = transform.DOMove(mainCharacter.position, creepDuration).SetEase(Ease.Linear);
     }
 
@@ -220,7 +220,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         Instantiate(bloodEffect, transform.position, Quaternion.identity);
     }
 
-    private void PlayAnimation(AnimationClip clip, bool crossFade = false,float fade = .25f)
+    private void PlayAnimation(AnimationClip clip, bool crossFade = false, QueueMode queueMode = QueueMode.PlayNow, float fade = .25f)
     {
         animComponent.clip = clip;
 
@@ -230,6 +230,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
             return;
         }
         
-        animComponent.CrossFadeQueued(clip.name, fade, QueueMode.PlayNow);
+        animComponent.CrossFadeQueued(clip.name, fade, queueMode);
     }
 }
