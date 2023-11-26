@@ -39,6 +39,7 @@ public class FullScreenEffectManager : MonoBehaviour
     private IEnumerator AnimateUIMaterial(float effectTime)
     {
         float currentTime = 0;
+        effectImage.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 359));
         canvasGroup.alpha = 1;
         //float currentRemoveTime = 0;
         while(currentTime <= effectTime)
