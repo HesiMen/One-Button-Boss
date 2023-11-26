@@ -13,10 +13,6 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 518870714472298017, guid: 0e9c78f529526bb4faa099a49f5581b9, type: 3}
-      propertyPath: myWeapon
-      value: 
-      objectReference: {fileID: 8513545753180421088, guid: 2da7dcc9f3327744fbbab2593db410d4, type: 3}
-    - target: {fileID: 518870714472298017, guid: 0e9c78f529526bb4faa099a49f5581b9, type: 3}
       propertyPath: creepDuration
       value: 6
       objectReference: {fileID: 0}
