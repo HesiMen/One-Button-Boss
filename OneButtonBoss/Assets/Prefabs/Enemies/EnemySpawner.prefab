@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  delayEnemySpawn: 10
+  delayEnemySpawn: 2
   enemyTypes:
   - {fileID: 1143817031576398579, guid: 8cfe6dd59d34eb44a96d7dd57f9aae25, type: 3}
   - {fileID: 6791254074943280222, guid: 2961ca3cb5bda8e4ba1fa63ee7d346f8, type: 3}
