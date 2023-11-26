@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closeRangeWeaponCollection:
   - {fileID: 1629597472707135674, guid: c0c37a6d4a5232843bdbcc7eed9ff215, type: 3}
-  mediumRangeWeaponCollection:
   - {fileID: 2970536510199285107, guid: 65544b3e9e2b7d34bb6c3e346a3e7a30, type: 3}
-  longRangeWeaponCollection:
+  mediumRangeWeaponCollection:
   - {fileID: 6932589281991008854, guid: 7b89c38a2e7cfa046bf6a3ed79a494ce, type: 3}
   - {fileID: 8788790698348532713, guid: 495f3a4ed1d27d741825578c560b6c11, type: 3}
+  longRangeWeaponCollection: []

@@ -44,6 +44,8 @@ public class DuelManager : MonoBehaviour
     public UnityEvent loseEvent;
     public UnityEvent tooEarlyLoseEvent;
     public UnityEvent tooEarlyWarmUpEvent;
+
+    public float epicTimeHold = 1f;// this will decrease as more enemies come. 
     void BattleStarts(System.Func<IEnumerator> currentBattleFunc)
     {
         RecordBattle(currentBattleFunc);
@@ -86,7 +88,7 @@ public class DuelManager : MonoBehaviour
         {
             if (coroutine != null)
             {
-                Debug.Log(coroutine);
+               // Debug.Log(coroutine);
                 StopCoroutine(coroutine);
             }
         }
@@ -191,29 +193,35 @@ public class DuelManager : MonoBehaviour
 
         if (playerAttacking)
         {
+
+            Debug.Log("Player Won");
+            wonEvent.Invoke();
+            enemy.myAtk -= OnAtk;
+            playerAttacking = false;
+            player.isAlive = true;
+            
+
             //Remove exclamationPoint
             fullScreenEffectManager.PlayRemoveExclamationPoint();
 
             //Swap positions on Attack
             player.transform.position = enemy.transform.position;
             enemy.transform.position = playerPosition;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(epicTimeHold);
 
+           
             //Kill enemy and spawn effects and play Audio
             enemy.Damage(5);
+            fullScreenEffectManager.PlayCount();
             Instantiate(bloodSplatter, enemy.transform.position, enemy.transform.rotation);
             enemy.gameObject.SetActive(false);
             AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(epicTimeHold/2f);
 
             //Disengage fight, count player win, and continue
             fullScreenEffectManager.PlayDisengageFight();
             player.MovePlayerBackToOrigin();
-            Debug.Log("Player Won");
-            wonEvent.Invoke();
-            enemy.myAtk -= OnAtk;
-            playerAttacking = false;
-            player.isAlive = true;
+          
         }
         else
         {
@@ -228,5 +236,20 @@ public class DuelManager : MonoBehaviour
         }
 
         CheckTimeBeforeEnemyAtk();
+    }
+
+    public void RestartDuels()
+    {
+        StopAllCoroutines();
+        for (int i = 0; i < allHeros.Count; i++)
+        {
+            allHeros[i].myAtk -= OnAtk;
+            Destroy(allHeros[i]);
+        }
+        allHeros.Clear();
+
+        player.gameObject.SetActive(true);
+        player.isAlive = true;
+        
     }
 }

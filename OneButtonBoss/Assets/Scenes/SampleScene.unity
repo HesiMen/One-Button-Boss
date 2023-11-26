@@ -188,6 +188,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1720360766}
     m_Modifications:
+    - target: {fileID: 365990353327589498, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110568004850706165, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110568004850706165, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110568004850706165, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110568004850706165, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278256127
+      objectReference: {fileID: 0}
+    - target: {fileID: 2250862278478557221, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2250862278478557221, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: m_Animations.Array.data[5]
+      value: 
+      objectReference: {fileID: 7400000, guid: 898db0eee03aa7d47a7d000f6640a792, type: 2}
     - target: {fileID: 4965273670234520075, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
       propertyPath: m_Name
       value: Ui_FullScreen_Effects
@@ -831,11 +859,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dcb0e693cfc46bf46b5a15a91654b39c, type: 3}
   - {fileID: 21300000, guid: 42f1d80ec7ebf824dbd5a60c3aaf1607, type: 3}
   - {fileID: 21300000, guid: c878e81c30012ff4fb8d17012e0e3d3a, type: 3}
-  spawnRateRange: {x: 1, y: 4}
+  spawnRateRange: {x: 5, y: 7}
   spawnedEnemies: []
   hasLost: 0
   duelManager: {fileID: 895960742}
   onStart: 1
+  effectManager: {fileID: 234105130}
+  listOfDificultInOrder:
+  - {fileID: 11400000, guid: abc1ba48ed9f1dd46a240a88e052035c, type: 2}
+  - {fileID: 11400000, guid: 1e4805063d02e394094b9040300af826, type: 2}
+  - {fileID: 11400000, guid: d2269afcf2553d142b6fcc773b005f6d, type: 2}
+  - {fileID: 11400000, guid: a9da4139cddfe0a4c88effd31ef12593, type: 2}
+  - {fileID: 11400000, guid: ba84ce330beeab44fad58ef4286f3ddb, type: 2}
+  - {fileID: 11400000, guid: 69ac4c7e86c63f249913853669d3579b, type: 2}
+  currentDifficulty: {fileID: 0}
+  rangeAmmountToIncreaseDifficulty: {x: 5, y: 6}
 --- !u!4 &806583747
 Transform:
   m_ObjectHideFlags: 0
@@ -905,6 +943,7 @@ MonoBehaviour:
   tooEarlyWarmUpEvent:
     m_PersistentCalls:
       m_Calls: []
+  epicTimeHold: 1
 --- !u!4 &895960743
 Transform:
   m_ObjectHideFlags: 0

@@ -68,9 +68,9 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     private bool hasFinishedAttack = false;
 
-    [SerializeField] bool zigzag = false;
-    [SerializeField] float zigzagWidth = 1.0f; // Width of the zigzag movement
-    [SerializeField] int zigzagCount = 3; // Number of zigzags
+    [SerializeField] public bool zigzag = false;
+    [SerializeField] public float zigzagWidth = 1.0f; // Width of the zigzag movement
+    [SerializeField] public int zigzagCount = 3; // Number of zigzags
     private void Start()
     {
         Initiate();

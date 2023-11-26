@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-
+using TMPro;
 //using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +14,13 @@ public class FullScreenEffectManager : MonoBehaviour
     [SerializeField] private float effectTime;
     [SerializeField] private float removeTime;
     [SerializeField] private CanvasGroup exclamationCanvasGroup;
-
+    [SerializeField] public TextMeshProUGUI textCount;
+    private int tallyCount = 0;
+    public int TotalCount
+    {
+        get { return tallyCount; }
+        set { tallyCount = value; }
+    }
     [Header("Legacy Animation")]
     [SerializeField] private Animation animComponent;
     [SerializeField] private AnimationClip animClipFadeOut;
@@ -22,6 +28,7 @@ public class FullScreenEffectManager : MonoBehaviour
     [SerializeField] private AnimationClip animClipDisengageFight;
     [SerializeField] private AnimationClip animClipExclamationPoint;
     [SerializeField] private AnimationClip animClipRemoveExclamationPoint;
+    [SerializeField] private AnimationClip animClipCountt;
 
     private void PlayAnimation(AnimationClip clip)
     {
@@ -73,4 +80,13 @@ public class FullScreenEffectManager : MonoBehaviour
         StartCoroutine (AnimateUIMaterial(effectTime));
     }
 
+
+    public void PlayCount()
+    {
+        
+        tallyCount++;
+        Debug.Log(tallyCount);
+        textCount.text = tallyCount.ToString();
+        PlayAnimation(animClipCountt);
+    }
 }

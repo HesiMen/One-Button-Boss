@@ -23,11 +23,27 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] public DuelManager duelManager;
     public bool onStart = true;
 
-
+    [SerializeField] FullScreenEffectManager effectManager;
+    [SerializeField] private List<DificultySO> listOfDificultInOrder;
+    public DificultySO currentDifficulty;
+    [SerializeField] public Vector2 rangeAmmountToIncreaseDifficulty = new Vector2(10f, 15f);
+    private int difficultyAmmount = 0;
+    private int difficultyIndex = -1;
     private void Start()
     {
         if (onStart)
             StartSpawningHeros();
+    }
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            effectManager.TotalCount = 0;
+            duelManager.RestartDuels();
+            StartSpawningHeros();
+        }
     }
     public void StartSpawningHeros()
     {
@@ -35,21 +51,57 @@ public class EnemySpawner : MonoBehaviour
         {
             foreach (var enemy in spawnedEnemies)
             {
-                enemy.gameObject.SetActive(false);
-                Destroy(enemy);
+                if (enemy != null)
+                {
+                    enemy.gameObject.SetActive(false);
+                    Destroy(enemy);
+                }
+
             }
             spawnedEnemies.Clear();
         }
         StartCoroutine(StartSpawning());
     }
+
+    public void SetDifficulty()
+    {
+
+        if (effectManager.TotalCount % difficultyAmmount == 0)
+        {
+            if (difficultyIndex < listOfDificultInOrder.Count - 1)
+            {
+                difficultyIndex++;
+                difficultyAmmount = (int)Random.Range(rangeAmmountToIncreaseDifficulty.x, rangeAmmountToIncreaseDifficulty.y);
+                switch (difficultyIndex)
+                {
+                    case 3:
+                        duelManager.epicTimeHold = duelManager.epicTimeHold / 2;
+                        break;
+
+                    case 5:
+                        duelManager.epicTimeHold = duelManager.epicTimeHold / 2;
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
+            currentDifficulty = listOfDificultInOrder[difficultyIndex];
+        }
+    }
+
+
+
     IEnumerator StartSpawning()
     {
- 
+        difficultyAmmount = (int)Random.Range(rangeAmmountToIncreaseDifficulty.x, rangeAmmountToIncreaseDifficulty.y);
+
         yield return new WaitForSeconds(delayEnemySpawn);
         while (duelManager.player.isAlive)
         {
             counter -= Time.deltaTime;
-           // Debug.Log(counter);
+            // Debug.Log(counter);
             if (counter <= 0)
             {
                 SpawnEnemy();
@@ -61,11 +113,14 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        nextTimeToSpawn = Random.RandomRange(spawnRateRange.x, spawnRateRange.y);
+        SetDifficulty();
+        nextTimeToSpawn = Random.Range(currentDifficulty.timeSpawnRange.x, currentDifficulty.timeSpawnRange.y);
         counter = nextTimeToSpawn;
+        int enemyType = (int)currentDifficulty.typesOfEnemy;
+        if (currentDifficulty.typesOfEnemy == DificultySO.TypesOfEnemy.Both)
+            enemyType = Random.Range(0, enemyTypes.Count);
+        EnemyAI newEnemy = Instantiate(enemyTypes[enemyType], this.transform);
 
-        EnemyAI newEnemy = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], this.transform);
-      
         InitEnemy(newEnemy);
         spawnedEnemies.Add(newEnemy);
         duelManager.SubscribeEnemy(newEnemy);
@@ -76,6 +131,9 @@ public class EnemySpawner : MonoBehaviour
         enemy.gameObject.SetActive(true);
         enemy.mainCharacter = player.transform;
         enemy.myColor = enemyColor[Random.Range(0, enemyColor.Count - 1)];
+        enemy.zigzag = currentDifficulty.shouldZigZag;
+        enemy.zigzagCount = currentDifficulty.zigZagCount;
+        enemy.zigzagWidth = currentDifficulty.zigZagWidth;
         GameObject newWeapon;
         switch (enemy.myRange)
         {
@@ -97,4 +155,5 @@ public class EnemySpawner : MonoBehaviour
         }
         enemy.enabled = true;
     }
+
 }
