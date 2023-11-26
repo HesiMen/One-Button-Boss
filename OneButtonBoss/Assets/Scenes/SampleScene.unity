@@ -193,6 +193,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2110568004850706165, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c1631f6e4dfa8412da1efe33837cf225, type: 2}
+    - target: {fileID: 2110568004850706165, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
       propertyPath: m_fontColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -205,8 +209,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2110568004850706165, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6027789301841570693, guid: c1631f6e4dfa8412da1efe33837cf225, type: 2}
+    - target: {fileID: 2110568004850706165, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4278256127
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110568004850706165, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2250862278478557221, guid: f6a11870285297c42be0f3afdb924b6e, type: 3}
       propertyPath: m_Animations.Array.size
