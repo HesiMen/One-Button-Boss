@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -31,6 +32,7 @@ public class DuelManager : MonoBehaviour
     [SerializeField] GameObject bloodSplatter;
 
     [SerializeField] AudioSource sfx;
+    [SerializeField] AudioSource music;
 
     
 
@@ -261,6 +263,11 @@ public class DuelManager : MonoBehaviour
     private void PlayerLose()
     {
         StopAllCoroutines();
+        //lower music pitch
+        DOVirtual.Float(1f, 0.8f, loseScreen.animClipShow.length, v =>
+        {
+            music.pitch = v;
+        });
         loseScreen.ShowLose();
         StartCoroutine(WaitForPlayerInput());  
     }
@@ -274,6 +281,11 @@ public class DuelManager : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 loseScreen.HideLose();
+                //Raise music pitch
+                DOVirtual.Float(0.8f, 1f, loseScreen.animClipHide.length, v =>
+                {
+                    music.pitch = v;
+                });
                 yield return new WaitForSeconds(loseScreen.animClipHide.length);
                 RestartDuels();
                 playerPressed = true;
