@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     {
         if(readyToStart)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 Slash();
 
             //Face target if it's defined

@@ -278,7 +278,7 @@ public class DuelManager : MonoBehaviour
         bool playerPressed = false;
         while(!playerPressed)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 loseScreen.HideLose();
                 //Raise music pitch

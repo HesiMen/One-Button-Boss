@@ -51,7 +51,7 @@ public class IntroSequenceManager : MonoBehaviour
         bool playerPressedSpace = false;
         while(!playerPressedSpace)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 playerPressedSpace = true;
             }
