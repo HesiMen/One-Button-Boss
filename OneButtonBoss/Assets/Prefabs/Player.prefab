@@ -70,9 +70,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -519122677
+  m_SortingLayer: 3
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 87e88d49de1731a4fb4dad6bb5fd3394, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -160,8 +160,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -420374059
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 136723116a7bab0438029cdd1c7101aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -215,6 +215,8 @@ MonoBehaviour:
   swordSlash: {fileID: 8300000, guid: 35584ac386a43b344b4a45e1b1cae756, type: 3}
   slashVolume: 1
   slashSFX: {fileID: 8598626096013548313}
+  readyToStart: 0
+  isAlive: 1
 --- !u!82 &8598626096013548313
 AudioSource:
   m_ObjectHideFlags: 0
