@@ -221,6 +221,7 @@ MonoBehaviour:
   zigzag: 0
   zigzagWidth: 1
   zigzagCount: 3
+  dustParticleObject: {fileID: 1045013075425048975}
 --- !u!111 &3985754266977857255
 Animation:
   m_ObjectHideFlags: 0
@@ -462,11 +463,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Effect_Dust_Particle
       objectReference: {fileID: 0}
+    - target: {fileID: 4179326790553369320, guid: 4ce2c966b557c9c43905bba71b44dafd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ce2c966b557c9c43905bba71b44dafd, type: 3}
+--- !u!1 &1045013075425048975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4179326790553369320, guid: 4ce2c966b557c9c43905bba71b44dafd, type: 3}
+  m_PrefabInstance: {fileID: 3999005464752669543}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1177045572751637413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2822322095183329474, guid: 4ce2c966b557c9c43905bba71b44dafd, type: 3}

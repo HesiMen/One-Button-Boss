@@ -71,6 +71,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField] public bool zigzag = false;
     [SerializeField] public float zigzagWidth = 1.0f; // Width of the zigzag movement
     [SerializeField] public int zigzagCount = 3; // Number of zigzags
+
+    [SerializeField] private GameObject dustParticleObject;
     private void Start()
     {
         Initiate();
@@ -148,6 +150,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         float randomAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
         Vector2 offset = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * spawnRadius;
         transform.position = (Vector2)mainCharacter.position + offset;
+        dustParticleObject.SetActive(true);
     }
 
     private void Creep()
