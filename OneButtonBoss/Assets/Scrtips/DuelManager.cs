@@ -245,6 +245,7 @@ public class DuelManager : MonoBehaviour
     {
         StopAllCoroutines();
         enemySpawner.ResetSpawner();
+        player.RespawnPlayer();
         for (int i = 0; i < allHeros.Count; i++)
         {
             allHeros[i].myAtk -= OnAtk;

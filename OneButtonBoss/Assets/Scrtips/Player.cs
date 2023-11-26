@@ -88,4 +88,10 @@ public class Player : MonoBehaviour
     {
         transform.DOMove(new Vector3(0,0,0), tweenToOriginTime);
     }
+
+    public void RespawnPlayer()
+    {
+        transform.position = Vector3.zero;
+        playerAnimator.SetTrigger("spawn");
+    }
 }
