@@ -35,16 +35,6 @@ public class EnemySpawner : MonoBehaviour
             StartSpawningHeros();
     }
 
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            effectManager.TotalCount = 0;
-            duelManager.RestartDuels();
-            StartSpawningHeros();
-        }
-    }
     public void StartSpawningHeros()
     {
         if (spawnedEnemies != null)
@@ -154,6 +144,14 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
         enemy.enabled = true;
+    }
+
+    public void ResetSpawner()
+    {
+        difficultyIndex = -1;
+        effectManager.TotalCount = 0;
+        //duelManager.RestartDuels();
+        StartSpawningHeros();
     }
 
 }

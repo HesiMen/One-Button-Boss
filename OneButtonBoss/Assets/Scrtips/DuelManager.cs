@@ -10,6 +10,7 @@ public class DuelManager : MonoBehaviour
 {
     public List<EnemyAI> allHeros;
     private EnemyAI currentHero;
+    [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] public Player player;
     bool playerAttacking;
     [SerializeField] float timeWindow = 0.5f;
@@ -19,6 +20,7 @@ public class DuelManager : MonoBehaviour
     Quaternion enemyRotation;
     [SerializeField] private FullScreenEffectManager fullScreenEffectManager;
     [SerializeField] private CameraEffectManager cameraEffectManager;
+    [SerializeField] private LoseScreen loseScreen;
 
     [Header("Audio Settings")]
     [SerializeField] AudioClip clashSound;
@@ -231,6 +233,7 @@ public class DuelManager : MonoBehaviour
             fullScreenEffectManager.PlayRemoveExclamationPoint();
             AudioSource.PlayClipAtPoint(bloodSound, Camera.main.transform.position, bloodVolume);
             Instantiate(bloodSplatter, player.transform.position, player.transform.rotation);
+            PlayerLose();
             player.gameObject.SetActive(false);
             player.isAlive = false;
         }
@@ -241,6 +244,7 @@ public class DuelManager : MonoBehaviour
     public void RestartDuels()
     {
         StopAllCoroutines();
+        enemySpawner.ResetSpawner();
         for (int i = 0; i < allHeros.Count; i++)
         {
             allHeros[i].myAtk -= OnAtk;
@@ -251,5 +255,31 @@ public class DuelManager : MonoBehaviour
         player.gameObject.SetActive(true);
         player.isAlive = true;
         
+    }
+
+    private void PlayerLose()
+    {
+        StopAllCoroutines();
+        loseScreen.ShowLose();
+        StartCoroutine(WaitForPlayerInput());  
+    }
+
+    IEnumerator WaitForPlayerInput()
+    {
+        yield return new WaitForSeconds(loseScreen.animClipShow.length);
+        bool playerPressed = false;
+        while(!playerPressed)
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                loseScreen.HideLose();
+                yield return new WaitForSeconds(loseScreen.animClipHide.length);
+                RestartDuels();
+                playerPressed = true;
+            }
+            yield return null;
+        }
+
+        yield return null;
     }
 }
