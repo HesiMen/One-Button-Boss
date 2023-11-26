@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip swordSlash;
     [SerializeField] float slashVolume = 1f;
     [SerializeField] AudioSource slashSFX;
+    public bool readyToStart;
 
     public bool isAlive = true;
 
@@ -32,12 +33,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Slash();
+        if(readyToStart)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                Slash();
 
-        //Face target if it's defined
-        if(rotationTarget)
-            FaceEnemy(rotationTarget);
+            //Face target if it's defined
+            if(rotationTarget)
+                FaceEnemy(rotationTarget);
+        }
     }
 
 
